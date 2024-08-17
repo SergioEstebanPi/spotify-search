@@ -9,7 +9,12 @@ const SearchForm = ({ setTrackData }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:8080/codechallenge/createTrack?isrc=${isrc}`);
+            let headers = {
+                'Authorization': 'Basic dXNlcjpwYXNzd29yZA=='
+            }
+            await axios.post(`http://localhost:8080/codechallenge/createTrack?isrc=${isrc}`, {}, {
+                headers: headers
+            });
             navigate(`/track/${isrc}`);
         } catch (error) {
             console.log('Failed to create track. Please try again.');
