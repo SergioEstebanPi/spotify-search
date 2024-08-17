@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SearchForm from './components/SearchForm';
 import TrackMetadata from './components/TrackMetadata';
@@ -7,13 +7,13 @@ import { useSelector } from 'react-redux';
 import ErrorComponent from './components/ErrorComponent';
 
 const App = () => {
-    const { error } = useSelector((state) => state.track);
+    const { status, error } = useSelector((state) => state.track);
 
     return (
         <Router>
             <div>
                 <h1>Tracks Search</h1>
-                {error && <ErrorComponent message={error} />}
+                {status === 'failed' && <ErrorComponent message={error} />}
                 <Routes>
                     <Route path="/" element={<SearchForm />} />
                     <Route

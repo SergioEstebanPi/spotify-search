@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(function (config) {
-  config.headers.Authorization = BASIC + '';
+  config.headers.Authorization = BASIC + 'dXNlcjpwYXNzd29yZA==';
   return config;
 });
 

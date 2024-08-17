@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useApi from '../hooks/useApi';
-import { fetchTrackFailure, fetchTrackRequest, fetchTrackSuccess } from '../features/Track/TrackSlice';
 
 const SearchForm = () => {
     const [isrc, setIsrc] = useState('');
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { metadata, coverImage, status, error } = useSelector((state) => state.track);
+    const { metadata, status, error } = useSelector((state) => state.track);
 
-    const { data: trackData, loading: trackLoading, error: trackError, fetchData: fetchTrack } = useApi('codechallenge/createTrack', 'POST');
+    const { fetchData: fetchTrack } = useApi('codechallenge/createTrack', 'POST');
+
+    useEffect(() => {
+        if(status === 'succeeded'){
+            navigate(`/track/${isrc}`);
+        }
+    }, [status])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(fetchTrackRequest());
-        try {
-            await fetchTrack({isrc});
-            dispatch(fetchTrackSuccess());
-            navigate(`/track/${isrc}`);
-        } catch (error) {
-            dispatch(fetchTrackFailure(error.message || 'An error occurred'));
-        }
+        await fetchTrack({isrc});
     };
 
     return (

@@ -1,16 +1,14 @@
-import { useState } from 'react';
 import instance from '../api/axiosApi'
+import { useDispatch } from 'react-redux';
+import { fetchTrackFailure, fetchTrackRequest, fetchTrackSuccess } from '../features/Track/TrackSlice';
 
 const useApi = (endpoint, method = 'GET', headers = {}) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
   instance.defaults.headers = headers;
 
   const fetchData = async (params = {}, body = null) => {
-    setLoading(true);
-    setError(null);
-
+    dispatch(fetchTrackRequest())
     try {
       const response = await instance({
         url: endpoint,
@@ -18,15 +16,17 @@ const useApi = (endpoint, method = 'GET', headers = {}) => {
         params: method === 'GET' || method === 'POST' ? params : {},
         data: body,
       });
-      setData(response.data);
+      console.log(response.data)
+      dispatch(fetchTrackSuccess(response.data))
     } catch (err) {
-      setError(err.message || 'An error occurred');
-    } finally {
-      setLoading(false);
+      console.log(err)
+      if(err && err.response){
+        dispatch(fetchTrackFailure(err.response.data))
+      }
     }
   };
 
-  return { data, loading, error, fetchData };
+  return { fetchData };
 };
 
 export default useApi;

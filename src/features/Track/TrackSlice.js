@@ -10,12 +10,12 @@ const trackSlice = createSlice({
   reducers: {
     fetchTrackRequest: (state) => {
       state.status = 'loading';
+      state.error = null;
     },
     fetchTrackSuccess: (state, action) => {
       state.status = 'succeeded';
-      if(action.payload) {
-        state.metadata = action.payload.metadata;
-      }
+      state.error = null;
+      state.metadata = action.payload;
     },
     fetchTrackFailure: (state, action) => {
       state.status = 'failed';
