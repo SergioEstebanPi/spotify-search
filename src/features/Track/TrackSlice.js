@@ -4,7 +4,6 @@ const trackSlice = createSlice({
   name: 'track',
   initialState: {
     metadata: null,
-    coverImage: null,
     status: 'idle',
     error: null,
   },
@@ -14,8 +13,9 @@ const trackSlice = createSlice({
     },
     fetchTrackSuccess: (state, action) => {
       state.status = 'succeeded';
-      state.metadata = action.payload.metadata;
-      state.coverImage = action.payload.coverImage;
+      if(action.payload) {
+        state.metadata = action.payload.metadata;
+      }
     },
     fetchTrackFailure: (state, action) => {
       state.status = 'failed';

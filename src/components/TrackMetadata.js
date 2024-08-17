@@ -2,24 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import CoverImage from './CoverImage';
+import { useDispatch, useSelector } from 'react-redux';
+import useApi from '../hooks/useApi';
+import { fetchTrackFailure, fetchTrackRequest, fetchTrackSuccess } from '../features/Track/TrackSlice';
 
-const TrackMetadata = ({ setError }) => {
-    const [track, setTrack] = useState(null);
+const TrackMetadata = () => {
     const {isrc} = useParams();
+    const dispatch = useDispatch();
+
+    const { data: metadataData, loading: metadataLoading, error: metadataError, fetchData: fetchMetadata } = useApi('codechallenge/getTrackMetadata');
 
     useEffect(() => {
-        if(isrc){
+        if (isrc) {
             const fetchTrack = async () => {
+                dispatch(fetchTrackRequest());
                 try {
-                    let headers = {
-                        'Authorization': 'Basic dXNlcjpwYXNzd29yZA=='
-                    }
-                    const response = await axios.get(`http://localhost:8080/codechallenge/getTrackMetadata?isrc=${isrc}`, {
-                        headers: headers
-                    });
-                    setTrack(response.data);
+                    await fetchMetadata({isrc});
+                    dispatch(fetchTrackSuccess({
+                        metadata: metadataData
+                    }));
                 } catch (error) {
-                    setError('Failed to fetch track metadata.');
+                    dispatch(fetchTrackFailure(error.message || 'Failed to fetch track metadata.'));
                 }
             };
     
@@ -29,14 +32,14 @@ const TrackMetadata = ({ setError }) => {
 
     return (
         <div>
-            {track ? (
+            {metadataData ? (
                 <div>
-                    <h2>{track.name}</h2>
-                    <p><strong>Artist:</strong> {track.artistName}</p>
-                    <p><strong>Album:</strong> {track.albumName}</p>
-                    <p><strong>Explicit:</strong> {track.isExplicit ? 'Yes' : 'No'}</p>
-                    <p><strong>Playback Seconds:</strong> {track.playbackSeconds}</p>
-                    <CoverImage isrc={isrc} />
+                    <h2>{metadataData.name}</h2>
+                    <p><strong>Artist:</strong> {metadataData.artistName}</p>
+                    <p><strong>Album:</strong> {metadataData.albumName}</p>
+                    <p><strong>Explicit:</strong> {metadataData.isExplicit ? 'Yes' : 'No'}</p>
+                    <p><strong>Playback Seconds:</strong> {metadataData.playbackSeconds}</p>
+                    <CoverImage isrc={metadataData.isrc} />
                 </div>
             ) : (
                 <p>Loading...</p>
