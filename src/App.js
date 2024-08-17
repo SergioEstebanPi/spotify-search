@@ -14,10 +14,10 @@ const App = () => {
                 <h1>Tracks Search</h1>
                 {error && <ErrorComponent message={error} />}
                 <Routes>
-                    <Route path="/" element={<SearchForm setError={ErrorComponent} />} />
+                    <Route path="/" element={<SearchForm setError={setError} />} />
                     <Route
                         path="/track/:isrc"
-                        element={<TrackMetadata setError={ErrorComponent} />}
+                        element={<TrackMetadata setError={setError} />}
                     />
                 </Routes>
             </div>
