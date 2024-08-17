@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
+import CoverImage from './CoverImage';
 
 const TrackMetadata = () => {
     const [track, setTrack] = useState(null);
@@ -35,6 +36,7 @@ const TrackMetadata = () => {
                     <p><strong>Album:</strong> {track.albumName}</p>
                     <p><strong>Explicit:</strong> {track.isExplicit ? 'Yes' : 'No'}</p>
                     <p><strong>Playback Seconds:</strong> {track.playbackSeconds}</p>
+                    <CoverImage isrc={isrc} />
                 </div>
             ) : (
                 <p>Loading...</p>
