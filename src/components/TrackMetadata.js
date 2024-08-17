@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import CoverImage from './CoverImage';
 
-const TrackMetadata = () => {
+const TrackMetadata = ({ setError }) => {
     const [track, setTrack] = useState(null);
     const {isrc} = useParams();
 
@@ -19,7 +19,7 @@ const TrackMetadata = () => {
                     });
                     setTrack(response.data);
                 } catch (error) {
-                    console.log('Failed to fetch track metadata.');
+                    setError('Failed to fetch track metadata.');
                 }
             };
     

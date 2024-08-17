@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const SearchForm = ({ setTrackData }) => {
+const SearchForm = ({ setTrackData, setError }) => {
     const [isrc, setIsrc] = useState('');
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const SearchForm = ({ setTrackData }) => {
             });
             navigate(`/track/${isrc}`);
         } catch (error) {
-            console.log('Failed to create track. Please try again.');
+            setError('Failed to create track. Please try again.');
         }
     };
 
