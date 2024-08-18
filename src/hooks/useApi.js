@@ -16,10 +16,8 @@ const useApi = (endpoint, method = 'GET', headers = {}) => {
         params: method === 'GET' || method === 'POST' ? params : {},
         data: body,
       });
-      console.log(response.data)
       dispatch(fetchTrackSuccess(response.data))
     } catch (err) {
-      console.log(err)
       if(err && err.response){
         dispatch(fetchTrackFailure(err.response.data))
       }

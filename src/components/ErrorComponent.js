@@ -1,9 +1,8 @@
+import { Alert } from 'antd';
 import React from 'react';
 
 const ErrorComponent = ({ message }) => (
-    <div style={{ color: 'red' }}>
-        {message}
-    </div>
+    <Alert message={message} type="error" />
 );
 
 export default ErrorComponent;

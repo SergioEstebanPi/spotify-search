@@ -1,28 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import SearchForm from './components/SearchForm';
 import TrackMetadata from './components/TrackMetadata';
 import './App.css';
-import { useSelector } from 'react-redux';
-import ErrorComponent from './components/ErrorComponent';
+import Home from './components/Home';
 
 const App = () => {
-    const { status, error } = useSelector((state) => state.track);
 
     return (
-        <Router>
-            <div>
-                <h1>Tracks Search</h1>
-                {status === 'failed' && <ErrorComponent message={error} />}
+        <div>
+            <main>
                 <Routes>
-                    <Route path="/" element={<SearchForm />} />
+                    <Route path="/" element={<Home />} />
+                    <Route
+                        path="/search"
+                        exact
+                        element={<SearchForm />}
+                    />
                     <Route
                         path="/track/:isrc"
                         element={<TrackMetadata />}
                     />
                 </Routes>
-            </div>
-        </Router>
+            </main>
+        </div>
     );
 };
 
