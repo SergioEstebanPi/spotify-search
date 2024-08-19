@@ -1,0 +1,64 @@
+/* Layout Styles */
+.layout {
+    min-height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  .header {
+    background-color: #ffffff;
+    padding: 0 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-title {
+    color: #333;
+    margin: 0;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+  
+  .card {
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+  }
+  
+  .card-title {
+    color: #333;
+  }
+  
+  .input {
+    border-radius: 4px;
+  }
+  
+  .button {
+    width: 100%;
+    border-radius: 4px;
+  }
+  
+  .spinner-container {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .error-message {
+    color: #ff4d4f;
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  
