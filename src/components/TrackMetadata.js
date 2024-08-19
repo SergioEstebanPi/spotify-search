@@ -14,6 +14,7 @@ const TrackMetadata = () => {
     const { metadata, status, error } = useSelector((state) => state.track);
 
     const { fetchData: fetchMetadata } = useApi('codechallenge/getTrackMetadata');
+    const { fetchData: fetchCover } = useApi('codechallenge/getCover?isrc=');
     const [img, setImg] = useState();
 
     useEffect(() => {
@@ -22,12 +23,7 @@ const TrackMetadata = () => {
                 await fetchMetadata({ isrc });
             };
             const fetchImage = async () => {
-                const res = await fetch(BASEURL + 'codechallenge/getCover?isrc=' + isrc, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': BASIC + 'dXNlcjpwYXNzd29yZA==',
-                    },
-                });
+                const res = await fetchCover({isrc});
                 const imageBlob = await res.blob();
                 const imageObjectURL = URL.createObjectURL(imageBlob);
                 setImg(imageObjectURL);

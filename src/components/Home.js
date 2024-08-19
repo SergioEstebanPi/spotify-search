@@ -2,6 +2,7 @@ import React from 'react';
 import 'antd/dist/reset.css';
 
 import { Button, Layout, Typography, Space } from 'antd';
+import { BASEURL } from '../constants/constants';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
@@ -27,7 +28,7 @@ const Home = () => (
       <Space direction="vertical" size="large">
         <Button
           type="primary"
-          href="http://localhost:8080/oauth2/authorization/spotify"
+          href={BASEURL + "oauth2/authorization/spotify"}
           style={{ backgroundColor: '#1890ff', borderColor: '#1890ff' }}
         >
           Login with Spotify

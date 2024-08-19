@@ -2,13 +2,13 @@ import axios from 'axios';
 import { BASEURL, BASIC, TIMEOUT } from '../constants/constants';
 
 const instance = axios.create({
-  baseURL: BASEURL,
+  baseURL: process.env.API_URL || BASEURL,
   timeout: TIMEOUT,
-  withCredentials: true, // Allow sending cookies with requests
+  withCredentials: true,
 });
 
 instance.interceptors.request.use(function (config) {
-  config.headers.Authorization = BASIC + 'dXNlcjpwYXNzd29yZA==';
+  config.headers.Authorization = BASIC + process.env.AUTH_BASIC;
   return config;
 });
 
