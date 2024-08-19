@@ -1,14 +1,9 @@
 import React from 'react';
-import SearchForm from './SearchForm';
-import TrackMetadata from './TrackMetadata';
 
-function Home() {
-  return (
-    <div>
-      <SearchForm />
-      <TrackMetadata />
-    </div>
-  );
-}
+const Home = () => (
+  <div>
+    <a href="http://localhost:8080/oauth2/authorization/spotify">Login with Spotify</a>
+  </div>
+);
 
 export default Home;

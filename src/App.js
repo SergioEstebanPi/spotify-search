@@ -4,6 +4,7 @@ import SearchForm from './components/SearchForm';
 import TrackMetadata from './components/TrackMetadata';
 import './App.css';
 import Home from './components/Home';
+import LoginSuccess from './components/LoginSuccess';
 
 const App = () => {
 
@@ -12,6 +13,7 @@ const App = () => {
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/loginSuccess" element={<LoginSuccess />} />
                     <Route
                         path="/search"
                         exact
