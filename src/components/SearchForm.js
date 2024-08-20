@@ -21,6 +21,7 @@ const SearchForm = () => {
                 navigate(`/track/${isrc}`);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status])
 
     const handleSubmit = async () => {
