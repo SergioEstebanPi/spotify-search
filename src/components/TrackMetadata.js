@@ -21,10 +21,10 @@ const TrackMetadata = () => {
                 await fetchMetadata({ isrc });
             };
             const fetchImage = async () => {
-                const res = await fetch(BASEURL + 'codechallenge/getCover?isrc=' + isrc, {
+                const res = await fetch((process.env.REACT_APP_API_URL || BASEURL) + 'codechallenge/getCover?isrc=' + isrc, {
                     method: 'GET',
                     headers: {
-                        'Authorization': BASIC + process.env.REACT_APP_AUTH_BASIC || '',
+                        'Authorization': BASIC + (process.env.REACT_APP_AUTH_BASIC || ''),
                     },
                 });
                 const imageBlob = await res.blob();
