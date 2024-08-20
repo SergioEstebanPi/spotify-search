@@ -1,39 +1,33 @@
 import React from 'react';
-import 'antd/dist/reset.css';
+import { Layout, Typography } from 'antd';
+import { Outlet } from 'react-router-dom';
 
-import { Button, Layout, Typography, Space } from 'antd';
-import { BASEURL } from '../constants/constants';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
-
 const Home = () => (
-  <Layout style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
-    <Header style={{ backgroundColor: '#ffffff', padding: '0 24px' }}>
-      <div className="logo" />
+  <Layout style={{ minHeight: '50vh', backgroundColor: '#f5f5f5' }}>
+    <Header style={{ 
+      backgroundColor: '#00d755',
+      padding: '50px 50px'
+    }}>
+      <Title level={2} style={{ 
+          color: '#ffffff',
+      }}>
+          Welcome to the Spotify Challenge
+      </Title>
     </Header>
     <Content
       style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        padding: '24px',
-        backgroundColor: '#ffffff',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          padding: '24px',
+          backgroundColor: '#ffffff',
       }}
-    >
-      <Title level={2} style={{ color: '#333' }}>
-        Welcome to the Spotify Challenge
-      </Title>
-      <Space direction="vertical" size="large">
-        <Button
-          type="primary"
-          href={BASEURL + "oauth2/authorization/spotify"}
-          style={{ backgroundColor: '#1890ff', borderColor: '#1890ff' }}
-        >
-          Login with Spotify
-        </Button>
-      </Space>
+      >
+      <Outlet />
     </Content>
   </Layout>
 );
