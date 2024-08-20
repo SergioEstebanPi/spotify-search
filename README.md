@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+# Spotify Search App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 1. Home:
+![home](https://github.com/user-attachments/assets/485ba0fc-c756-49ba-803b-970b24a1238d)
+
+- 2. Spotify Login:
+![spotifylogin](https://github.com/user-attachments/assets/fcd2a854-72a8-4241-934a-26ac6e6a3f4d)
+
+- 3. Search Track with ISRC:
+![searchtrack](https://github.com/user-attachments/assets/ed6f09b6-dbc5-436b-a635-34bc5cde3657)
+
+- 4. Get Track info:
+![trackinfo](https://github.com/user-attachments/assets/46452738-42d9-4178-97f0-d2251b0e5dd8)
 
 ## Available Scripts
 
