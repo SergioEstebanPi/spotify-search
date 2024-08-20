@@ -15,7 +15,7 @@ const Login = () => (
             <Button 
                 type="default" 
                 className="custom-login-button" 
-                href={BASEURL + "oauth2/authorization/spotify"}
+                href={process.env.REACT_APP_AUTH_BASIC || BASEURL + "oauth2/authorization/spotify"}
             >
                 Login with Spotify
             </Button>
